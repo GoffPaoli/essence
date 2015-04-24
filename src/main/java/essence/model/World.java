@@ -35,7 +35,7 @@ public final class World {
 	public int getNextAvailableIndex() {
 		for (int i = 0; i < players.size(); i++) {
 			if (players.get(i) == null) {
-				return i;
+				return i + 1;
 			}
 		}
 		return players.size();
