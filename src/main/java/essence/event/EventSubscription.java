@@ -12,11 +12,11 @@ final class EventSubscription {
 		this.method = method;
 	}
 
-	Object subscriber() {
+	Object getSubscriber() {
 		return subscriber;
 	}
 
-	Method method() {
+	Method getMethod() {
 		return method;
 	}
 

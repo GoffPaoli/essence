@@ -26,7 +26,7 @@ final class EventRegistry {
 		}
 	}
 
-	Collection<EventSubscription> subscribersOf(Object event) {
+	Collection<EventSubscription> getSubscriptions(Object event) {
 		return unmodifiableCollection(subscriptions.get(event.getClass()));
 	}
 

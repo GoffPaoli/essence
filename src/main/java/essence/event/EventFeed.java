@@ -11,12 +11,12 @@ public final class EventFeed {
 	}
 
 	public void post(Object event) {
-		registry.subscribersOf(event).forEach(subscription -> invoke(event, subscription));
+		registry.getSubscriptions(event).forEach(subscription -> invoke(event, subscription));
 	}
 
 	private void invoke(Object event, EventSubscription subscription) {
 		try {
-			subscription.method().invoke(subscription.subscriber(), event);
+			subscription.getMethod().invoke(subscription.getSubscriber(), event);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			throw new RuntimeException(e); // delegate up
 		}

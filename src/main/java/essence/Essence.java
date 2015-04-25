@@ -1,5 +1,6 @@
 package essence;
 
+import essence.event.EventModule;
 import essence.inject.Inject;
 import essence.inject.Injector;
 import essence.network.NetworkServer;
@@ -13,7 +14,7 @@ public final class Essence {
 	private static final int PORT = 43594;
 
 	public static void main(String[] args) {
-		Injector injector = Injector.get(new LoggingModule());
+		Injector injector = Injector.get(new LoggingModule(), new EventModule());
 
 		// TODO Make plugin controller created by injector? (Hard TBH)
 		PluginController plugins = PluginController.get(PLUGINS_DIRECTORY, injector);
