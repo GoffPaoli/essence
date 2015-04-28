@@ -1,7 +1,9 @@
 package essence.model;
 
-public abstract class Entity {
+import essence.util.attribute.Attributes;
 
+public abstract class Entity extends Attributes {
+	
 	private Position position;
 
 	protected Entity(Position position) {

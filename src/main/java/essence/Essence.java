@@ -13,7 +13,7 @@ public final class Essence {
 	private static final String PLUGINS_DIRECTORY = "plugins/";
 	private static final int PORT = 43594;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		Injector injector = Injector.get(new LoggingModule(), new EventModule());
 
 		// TODO Make plugin controller created by injector? (Hard TBH)
@@ -24,13 +24,13 @@ public final class Essence {
 		essence.activate();
 	}
 
-	private final NetworkServer<?> server;
 	private final Logger logger;
+	private final NetworkServer<?> server;
 
 	@Inject
-	private Essence(NetworkServer<?> server, Logger logger) {
-		this.server = null;
+	private Essence(Logger logger, NetworkServer<?> server) {
 		this.logger = logger;
+		this.server = server;
 	}
 
 	private void activate() {

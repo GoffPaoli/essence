@@ -1,5 +1,7 @@
 package essence.inject;
 
+import java.util.function.Supplier;
+
 public final class TypeBindingBuilder<T> extends AbstractBindingBuilder<T> {
 
 	TypeBindingBuilder(Binder binder, Class<T> type) {
@@ -18,6 +20,11 @@ public final class TypeBindingBuilder<T> extends AbstractBindingBuilder<T> {
 
 	public void to(T value) {
 		ConstantBinding<T> binding = ConstantBinding.get(Key.get(getType()), value);
+		getBinder().bind(binding);
+	}
+
+	public void to(Supplier<T> supplier) {
+		SupplierBinding<T> binding = SupplierBinding.get(Key.get(getType()), supplier);
 		getBinder().bind(binding);
 	}
 
