@@ -9,6 +9,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
@@ -59,7 +60,7 @@ public final class PluginLoader {
 					.filter(e -> e != null && e.isAnnotationPresent(PluginManifest.class))
 					.collect(Collectors.toList());
 		} catch (IOException ioe) {
-			return new ArrayList<>();
+			return Collections.emptyList();
 		}
 	}
 
