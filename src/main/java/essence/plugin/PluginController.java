@@ -17,11 +17,11 @@ public final class PluginController {
 
 	private final Injector injector;
 
-	PluginController(String directory, PluginLoader loader, Injector injector) {
+	private PluginController(String directory, PluginLoader loader, Injector injector) {
 		this(new File(directory), loader, injector);
 	}
 
-	PluginController(File directory, PluginLoader loader, Injector injector) {
+	private PluginController(File directory, PluginLoader loader, Injector injector) {
 		this.directory = directory;
 		this.loader = loader;
 		this.injector = injector;
