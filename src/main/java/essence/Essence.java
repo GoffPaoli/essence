@@ -13,7 +13,7 @@ public final class Essence {
 	private static final String PLUGINS_DIRECTORY = "plugins/";
 	private static final int PORT = 43594;
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 		Injector injector = Injector.get(new LoggingModule(), new EventModule());
 
 		// TODO Make plugin controller created by injector? (Hard TBH)

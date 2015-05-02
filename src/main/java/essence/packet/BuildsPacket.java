@@ -1,4 +1,4 @@
-package essence.plugin;
+package essence.packet;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,10 +7,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PluginManifest {
+public @interface BuildsPacket {
 
-	String name();
-
-	Class<? extends Plugin>[] children() default {};
+	Class<? extends Packet> value();
 
 }

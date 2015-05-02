@@ -60,9 +60,9 @@ public final class PacketInputStream extends ByteArrayInputStream {
 
 	public String readString() {
 		StringBuilder buffer = new StringBuilder();
-		int read;
-		while ((read = readUnsignedByte()) != '\n' && available() != 0)
-			buffer.append((char) read);
+		char read;
+		while ('\n' != (read = (char) readUnsignedByte()) && available() != 0)
+			buffer.append(read);
 		return buffer.toString();
 	}
 

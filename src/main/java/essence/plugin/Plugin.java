@@ -5,10 +5,7 @@ import essence.inject.Module;
 
 public interface Plugin extends Module {
 
-	default void enable() {
-	}
-
-	default void disable() {
+	default void activate() {
 	}
 
 	@Override

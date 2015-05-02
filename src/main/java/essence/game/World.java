@@ -1,4 +1,4 @@
-package essence.model;
+package essence.game;
 
 import java.util.ArrayList;
 import java.util.Collections;

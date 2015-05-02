@@ -1,4 +1,4 @@
-package essence.model;
+package essence.game;
 
 public abstract class Mob extends Entity {
 

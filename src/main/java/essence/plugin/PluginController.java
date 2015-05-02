@@ -1,8 +1,8 @@
 package essence.plugin;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import essence.inject.Injector;
 
@@ -17,8 +17,6 @@ public final class PluginController {
 
 	private final Injector injector;
 
-	private final Map<PluginManifest, Plugin> plugins = new HashMap<>();
-
 	PluginController(String directory, PluginLoader loader, Injector injector) {
 		this(new File(directory), loader, injector);
 	}
@@ -29,23 +27,33 @@ public final class PluginController {
 		this.injector = injector;
 	}
 
-	public void enable(Plugin plugin) {
+	public void install(Plugin plugin) {
 		injector.install(plugin);
-		plugin.enable();
 	}
 
-	public void disable(Plugin plugin) {
-		plugin.disable();
+	public void activate(Plugin plugin) {
+		plugin.activate();
 	}
 
 	public void activate() {
-		for (Plugin plugin : loader.loadAll(directory)) {
-			PluginManifest manifest = plugin.getClass().getAnnotation(PluginManifest.class);
-			if (manifest != null)
-				plugins.put(manifest, plugin);
-		}
-		for (Plugin plugin : plugins.values())
-			enable(plugin);
-	}
+		List<Plugin> plugins = new ArrayList<>();
 
+		// Add all parent plugins
+		plugins.addAll(loader.loadAll(directory));
+
+		// Add our manifests
+		for (Plugin plugin : new ArrayList<>(plugins)) {
+			PluginManifest manifest = plugin.getClass().getAnnotation(PluginManifest.class);
+			if (manifest != null) {
+				for (Class<? extends Plugin> child : manifest.children()) {
+					Plugin childPlugin = injector.getInstance(child);
+					if (childPlugin != null)
+						plugins.add(childPlugin);
+				}
+			}
+		}
+
+		plugins.forEach(this::install);
+		plugins.forEach(this::activate);
+	}
 }

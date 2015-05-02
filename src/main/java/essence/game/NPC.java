@@ -1,4 +1,4 @@
-package essence.model;
+package essence.game;
 
 public final class NPC extends Mob {
 
