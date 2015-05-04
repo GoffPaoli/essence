@@ -2,13 +2,13 @@ package essence.packet;
 
 import java.io.ByteArrayOutputStream;
 
-public final class PacketOutputStream extends ByteArrayOutputStream {
+public final class PacketWriter extends ByteArrayOutputStream {
 
-	public static PacketOutputStream get() {
-		return new PacketOutputStream();
+	public static PacketWriter get() {
+		return new PacketWriter();
 	}
 
-	private PacketOutputStream() {
+	private PacketWriter() {
 	}
 
 	public void writeByte(int b) {
@@ -52,7 +52,7 @@ public final class PacketOutputStream extends ByteArrayOutputStream {
 		writeShort(i);
 	}
 
-	public void writeInteger1(int i) {
+	public void writeMiddleEndianInt(int i) {
 		write(i >> 8);
 		write(i);
 		write(i >> 24);

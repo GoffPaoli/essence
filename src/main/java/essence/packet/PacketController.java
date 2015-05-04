@@ -5,28 +5,28 @@ import java.util.Map;
 
 public final class PacketController {
 
-	private final Map<Class<? extends Packet>, PacketBuilder<?>> builders = new HashMap<>();
-	private final Map<Integer, PacketParser<?>> parsers = new HashMap<>();
+	private final Map<Integer, PacketEncoder<?>> encoders = new HashMap<>();
+	private final Map<Class<? extends Packet>, PacketDecoder<?>> decoders = new HashMap<>();
 
-	public void addParser(PacketParser<?> parser) {
-		ParsesPacket annotation = parser.getClass().getAnnotation(ParsesPacket.class);
+	public void addEncoder(PacketEncoder<?> encoder) {
+		EncodesPacket annotation = encoder.getClass().getAnnotation(EncodesPacket.class);
 		for (int id : annotation.value())
-			parsers.put(id, parser);
+			encoders.put(id, encoder);
 	}
 
-	public <T extends Packet> void addBuilder(PacketBuilder<T> builder) {
-		BuildsPacket annotation = builder.getClass().getAnnotation(BuildsPacket.class);
-		builders.put(annotation.value(), builder);
-	}
-
-	@SuppressWarnings("unchecked")
-	public <T extends Packet> T parse(PacketMessage message) {
-		return (T) parsers.get(message.getID()).parse(message);
+	public <T extends Packet> void addDecoder(PacketDecoder<T> decoder) {
+		DecodesPacket annotation = decoder.getClass().getAnnotation(DecodesPacket.class);
+		decoders.put(annotation.value(), decoder);
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends Packet> PacketMessage build(T packet) {
-		return ((PacketBuilder<T>) builders.get(packet.getClass())).build(packet);
+	public <T extends Packet> T encode(PacketMessage message) {
+		return (T) encoders.get(message.getID()).encode(message);
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T extends Packet> PacketMessage decode(T packet) {
+		return ((PacketDecoder<T>) decoders.get(packet.getClass())).decode(packet);
 	}
 
 }

@@ -2,17 +2,17 @@ package essence.packet;
 
 import java.io.ByteArrayInputStream;
 
-public final class PacketInputStream extends ByteArrayInputStream {
+public final class PacketReader extends ByteArrayInputStream {
 	
-	public static PacketInputStream get(PacketMessage message) {
+	public static PacketReader get(PacketMessage message) {
 		return get(message.getData());
 	}
 
-	public static PacketInputStream get(byte[] data) {
-		return new PacketInputStream(data);
+	public static PacketReader get(byte[] data) {
+		return new PacketReader(data);
 	}
 
-	private PacketInputStream(byte[] data) {
+	private PacketReader(byte[] data) {
 		super(data);
 	}
 

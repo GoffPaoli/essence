@@ -7,8 +7,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ParsesPacket {
+public @interface DecodesPacket {
 
-	int[] value();
+	Class<? extends Packet> value();
 
 }
