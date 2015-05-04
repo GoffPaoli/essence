@@ -4,15 +4,15 @@ import essence.packet.Packet;
 
 public final class LoginResponsePacket implements Packet {
 
-	public static LoginResponsePacket get(int response, int userStatus, int flagged) {
+	public static LoginResponsePacket get(int response, int userStatus, boolean flagged) {
 		return new LoginResponsePacket(response, userStatus, flagged);
 	}
 
 	private final int response;
 	private final int userStatus;
-	private final int flagged;
+	private final boolean flagged;
 
-	private LoginResponsePacket(int response, int userStatus, int flagged) {
+	private LoginResponsePacket(int response, int userStatus, boolean flagged) {
 		this.response = response;
 		this.userStatus = userStatus;
 		this.flagged = flagged;
@@ -26,7 +26,7 @@ public final class LoginResponsePacket implements Packet {
 		return userStatus;
 	}
 
-	public int getFlagged() {
+	public boolean isFlagged() {
 		return flagged;
 	}
 

@@ -39,7 +39,7 @@ public final class PluginController {
 		List<Plugin> plugins = new ArrayList<>();
 
 		// Add all parent plugins
-		plugins.addAll(loader.loadAll(directory));
+		plugins.addAll(loader.loadAll(directory, injector));
 
 		// Add our manifests
 		for (Plugin plugin : new ArrayList<>(plugins)) {

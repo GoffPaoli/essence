@@ -14,23 +14,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
+import essence.inject.Injector;
+
 public final class PluginLoader {
 
-	public Collection<Plugin> loadAll(File file) {
+	public Collection<Plugin> loadAll(File file, Injector injector) {
 		Collection<Plugin> plugins = new ArrayList<>();
 		if (file.isDirectory()) {
 			for (File child : file.listFiles())
-				plugins.addAll(loadAll(child));
+				plugins.addAll(loadAll(child, injector));
 		} else
-			plugins.add(load(file));
+			plugins.add(load(file, injector));
 		return plugins;
 	}
 
-	public Plugin load(File file) {
+	public Plugin load(File file, Injector injector) {
 		try {
 			addToClasspath(file);
 			Class<?> pluginClass = getPluginParent(file);
-			return (Plugin) pluginClass.newInstance();
+			return (Plugin) injector.getInstance(pluginClass);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

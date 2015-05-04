@@ -1,6 +1,8 @@
 package essence.packet.game;
 
-public final class PingPacket {
+import essence.packet.Packet;
+
+public final class PingPacket implements Packet {
 
 	public static PingPacket get(long timestamp) {
 		return new PingPacket(timestamp);

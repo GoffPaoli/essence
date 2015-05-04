@@ -6,6 +6,14 @@ public final class PacketMessage extends AbstractNetworkMessage {
 
 	private static final int HEADLESS = -1;
 
+	public static PacketMessage get(PacketOutputStream packetOutputStream, int id) {
+		return get(packetOutputStream.toByteArray(), id);
+	}
+
+	public static PacketMessage headless(PacketOutputStream packetOutputStream) {
+		return headless(packetOutputStream.toByteArray());
+	}
+
 	public static PacketMessage get(byte[] data, int id) {
 		return new PacketMessage(data, id);
 	}

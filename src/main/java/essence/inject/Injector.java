@@ -26,6 +26,7 @@ public final class Injector {
 				binder.bind(binding);
 			return instance;
 		} catch (Exception e) {
+			System.err.println(key.getType().getName());
 			throw new RuntimeException(e); // delegate up
 		}
 	}

@@ -1,6 +1,8 @@
 package essence.packet.game;
 
-public final class LoginPacket {
+import essence.packet.Packet;
+
+public final class LoginPacket implements Packet {
 
 	public static LoginPacket get(int magic, int clientVersion, boolean highDetail, int[] fileChecksums,
 			int blockLength, int blockID, int[] sessionKeys, int userID, String username, String password) {

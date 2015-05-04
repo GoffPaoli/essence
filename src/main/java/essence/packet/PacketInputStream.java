@@ -3,6 +3,10 @@ package essence.packet;
 import java.io.ByteArrayInputStream;
 
 public final class PacketInputStream extends ByteArrayInputStream {
+	
+	public static PacketInputStream get(PacketMessage message) {
+		return get(message.getData());
+	}
 
 	public static PacketInputStream get(byte[] data) {
 		return new PacketInputStream(data);
