@@ -27,6 +27,10 @@ public final class PacketWriter extends ByteArrayOutputStream {
 		write(-value);
 	}
 
+	public void writeBoolean(boolean value) {
+		write(value ? 1 : 0);
+	}
+
 	public void writeShort(int value) {
 		write(value >> 8);
 		write(value);
@@ -46,7 +50,7 @@ public final class PacketWriter extends ByteArrayOutputStream {
 		write(value + 128);
 		write(value >> 8);
 	}
-	
+
 	public void writeMedium(int value) {
 		write(value >> 16);
 		write(value >> 8);
@@ -70,8 +74,8 @@ public final class PacketWriter extends ByteArrayOutputStream {
 		writeInteger((int) value);
 	}
 
-	public void writeString(String s) {
-		writeBytes(s.getBytes());
+	public void writeString(String value) {
+		writeBytes(value.getBytes());
 		write('\n');
 	}
 

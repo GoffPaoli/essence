@@ -27,6 +27,10 @@ public final class PacketReader extends ByteArrayInputStream {
 	public int readUnsignedByte() {
 		return read() & 0xFF;
 	}
+	
+	public boolean readBoolean() {
+		return read() > 0;
+	}
 
 	public int readShort() {
 		return (read() << 8) + read();

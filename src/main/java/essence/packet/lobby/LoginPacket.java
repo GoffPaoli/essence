@@ -1,13 +1,13 @@
-package essence.packet.game;
+package essence.packet.lobby;
 
 import essence.packet.Packet;
 
 public final class LoginPacket implements Packet {
 
 	public static LoginPacket get(int magic, int clientVersion, boolean highDetail, int[] fileChecksums,
-			int blockLength, int blockID, int[] sessionKeys, int userID, String username, String password) {
-		return new LoginPacket(magic, clientVersion, highDetail, fileChecksums, blockLength, blockID, sessionKeys,
-				userID, username, password);
+			int blockLength, int blockID, int[] sessionKeys, int uid, String username, String password) {
+		return new LoginPacket(magic, clientVersion, highDetail, fileChecksums, blockLength, blockID, sessionKeys, uid,
+				username, password);
 	}
 
 	private final int magic;
@@ -16,11 +16,11 @@ public final class LoginPacket implements Packet {
 	private final int[] fileChecksums;
 	private final int blockLength, blockID;
 	private final int[] sessionKeys;
-	private final int userID;
+	private final int uid;
 	private final String username, password;
 
 	private LoginPacket(int magic, int clientVersion, boolean highDetail, int[] fileChecksums, int blockLength,
-			int blockID, int[] sessionKeys, int userID, String username, String password) {
+			int blockID, int[] sessionKeys, int uid, String username, String password) {
 		this.magic = magic;
 		this.clientVersion = clientVersion;
 		this.highDetail = highDetail;
@@ -28,7 +28,7 @@ public final class LoginPacket implements Packet {
 		this.blockLength = blockLength;
 		this.blockID = blockID;
 		this.sessionKeys = sessionKeys;
-		this.userID = userID;
+		this.uid = uid;
 		this.username = username;
 		this.password = password;
 	}
@@ -61,8 +61,8 @@ public final class LoginPacket implements Packet {
 		return sessionKeys;
 	}
 
-	public int getUserID() {
-		return userID;
+	public int getUID() {
+		return uid;
 	}
 
 	public String getUsername() {

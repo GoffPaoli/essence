@@ -1,4 +1,4 @@
-package essence.packet.game;
+package essence.packet.lobby;
 
 import essence.packet.Packet;
 
