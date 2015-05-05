@@ -11,57 +11,63 @@ public final class PacketWriter extends ByteArrayOutputStream {
 	private PacketWriter() {
 	}
 
-	public void writeByte(int b) {
-		write(b);
+	public void writeByte(int value) {
+		write(value);
 	}
 
-	public void writeBytes(byte[] b) {
-		write(b, 0, b.length);
+	public void writeBytes(byte[] values) {
+		write(values, 0, values.length);
 	}
 
-	public void writeByteA(int b) {
-		write(b + 128);
+	public void writeByteA(int value) {
+		write(value + 128);
 	}
 
-	public void writeByteC(int b) {
-		write(-b);
+	public void writeByteC(int value) {
+		write(-value);
 	}
 
-	public void writeShort(int s) {
-		write(s >> 8);
-		write(s);
+	public void writeShort(int value) {
+		write(value >> 8);
+		write(value);
 	}
 
-	public void writeShortA(int s) {
-		write(s >> 8);
-		write(s + 128);
+	public void writeShortA(int value) {
+		write(value >> 8);
+		write(value + 128);
 	}
 
-	public void writeLEShort(int s) {
-		write(s);
-		write(s >> 8);
+	public void writeLEShort(int value) {
+		write(value);
+		write(value >> 8);
 	}
 
-	public void writeLEShortA(int s) {
-		write(s + 128);
-		write(s >> 8);
+	public void writeLEShortA(int value) {
+		write(value + 128);
+		write(value >> 8);
+	}
+	
+	public void writeMedium(int value) {
+		write(value >> 16);
+		write(value >> 8);
+		write(value);
 	}
 
-	public void writeInteger(int i) {
-		writeShort(i >> 16);
-		writeShort(i);
+	public void writeInteger(int value) {
+		writeShort(value >> 16);
+		writeShort(value);
 	}
 
-	public void writeMiddleEndianInt(int i) {
-		write(i >> 8);
-		write(i);
-		write(i >> 24);
-		write(i >> 16);
+	public void writeMEInt(int value) {
+		write(value >> 8);
+		write(value);
+		write(value >> 24);
+		write(value >> 16);
 	}
 
-	public void writeLong(long l) {
-		writeInteger((int) l >> 32);
-		writeInteger((int) l);
+	public void writeLong(long value) {
+		writeInteger((int) value >> 32);
+		writeInteger((int) value);
 	}
 
 	public void writeString(String s) {

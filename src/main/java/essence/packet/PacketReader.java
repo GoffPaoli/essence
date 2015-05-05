@@ -3,7 +3,7 @@ package essence.packet;
 import java.io.ByteArrayInputStream;
 
 public final class PacketReader extends ByteArrayInputStream {
-	
+
 	public static PacketReader get(PacketMessage message) {
 		return get(message.getData());
 	}
@@ -50,6 +50,10 @@ public final class PacketReader extends ByteArrayInputStream {
 		return (readUnsignedByte() << 8) + readUnsignedByte();
 	}
 
+	public int readMedium() {
+		return (readUnsignedByte() << 16) + (readUnsignedByte() << 8) + readUnsignedByte();
+	}
+
 	public int readInteger() {
 		return (readShort() << 16) + readShort();
 	}
@@ -63,11 +67,11 @@ public final class PacketReader extends ByteArrayInputStream {
 	}
 
 	public String readString() {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder builder = new StringBuilder();
 		char read;
-		while ('\n' != (read = (char) readUnsignedByte()) && available() != 0)
-			buffer.append(read);
-		return buffer.toString();
+		while ('\n' != (read = (char) readUnsignedByte()) && available() > 0)
+			builder.append(read);
+		return builder.toString();
 	}
 
 }
