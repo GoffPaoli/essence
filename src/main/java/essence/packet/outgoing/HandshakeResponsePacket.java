@@ -1,8 +1,8 @@
-package essence.packet.lobby;
+package essence.packet.outgoing;
 
-import essence.packet.Packet;
+import essence.packet.OutgoingPacket;
 
-public final class HandshakeResponsePacket implements Packet {
+public final class HandshakeResponsePacket implements OutgoingPacket {
 
 	public static HandshakeResponsePacket get(int id, long sessionKey) {
 		return new HandshakeResponsePacket(id, sessionKey);

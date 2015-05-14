@@ -1,8 +1,8 @@
-package essence.packet.game;
+package essence.packet.outgoing;
 
-import essence.packet.Packet;
+import essence.packet.OutgoingPacket;
 
-public final class MapRegionPacket implements Packet {
+public final class MapRegionPacket implements OutgoingPacket {
 
 	public static MapRegionPacket get(int regionX, int regionY) {
 		return new MapRegionPacket(regionX, regionY);

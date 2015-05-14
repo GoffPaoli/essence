@@ -3,6 +3,8 @@ package essence.inject;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 
+import essence.util.Primitives;
+
 final class ImplementationBinding<T> extends AbstractBinding<T> {
 
 	static <T> ImplementationBinding<T> get(Key<T> key,
@@ -26,7 +28,7 @@ final class ImplementationBinding<T> extends AbstractBinding<T> {
 		Annotation[][] annotations = constructor.getParameterAnnotations();
 		Object[] parameters = new Object[types.length];
 		parameters: for (int i = 0; i < parameters.length; i++) {
-			Class<?> parameter = types[i];
+			Class<?> parameter = Primitives.wrap(types[i]);
 			if (annotations.length > 0 && annotations[i].length > 0) {
 				for (Annotation annotation : annotations[i])
 					parameters[i] = injector.getInstance(Key.get(parameter,

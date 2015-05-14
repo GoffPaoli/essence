@@ -4,9 +4,11 @@ public final class Injector {
 
 	public static Injector get(Module... modules) {
 		Binder binder = new Binder();
+		Injector injector = new Injector(binder);
+		binder.bind(ConstantBinding.get(Key.get(Injector.class), injector));
 		for (Module module : modules)
 			binder.install(module);
-		return new Injector(binder);
+		return injector;
 	}
 
 	private final Binder binder;

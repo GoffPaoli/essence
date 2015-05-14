@@ -1,8 +1,8 @@
-package essence.packet.lobby;
+package essence.packet.outgoing;
 
-import essence.packet.Packet;
+import essence.packet.OutgoingPacket;
 
-public final class LoginResponsePacket implements Packet {
+public final class LoginResponsePacket implements OutgoingPacket {
 
 	public static LoginResponsePacket get(int id, int crown, boolean flagged) {
 		return new LoginResponsePacket(id, crown, flagged);

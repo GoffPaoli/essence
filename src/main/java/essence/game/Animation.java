@@ -6,6 +6,10 @@ public final class Animation {
 		return new Animation(id, delay);
 	}
 
+	public static Animation get(int id) {
+		return get(id, 0);
+	}
+
 	private final int id, delay;
 
 	private Animation(int id, int delay) {

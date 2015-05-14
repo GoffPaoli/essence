@@ -4,8 +4,16 @@ import java.io.ByteArrayOutputStream;
 
 public final class PacketWriter extends ByteArrayOutputStream {
 
+	public static PacketWriter get(int size) {
+		return new PacketWriter();
+	}
+
 	public static PacketWriter get() {
 		return new PacketWriter();
+	}
+
+	private PacketWriter(int size) {
+		super(size);
 	}
 
 	private PacketWriter() {

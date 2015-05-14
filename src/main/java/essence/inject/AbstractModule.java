@@ -7,8 +7,7 @@ public abstract class AbstractModule implements Module {
 	@Override
 	public final void configure(Binder binder) {
 		if (this.binder != null)
-			throw new IllegalStateException(
-					"Modules can only be configured once!");
+			throw new IllegalStateException("Modules can only be configured once!");
 
 		this.binder = binder;
 

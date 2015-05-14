@@ -1,13 +1,15 @@
-package essence.packet.lobby;
+package essence.packet.incoming;
 
-import essence.packet.Packet;
+import essence.packet.AbstractIncomingPacket;
+import essence.packet.PacketClient;
 
-public final class LoginPacket implements Packet {
+public final class LoginPacket extends AbstractIncomingPacket {
 
-	public static LoginPacket get(int magic, int clientVersion, boolean highDetail, int[] fileChecksums,
-			int blockLength, int blockID, int[] sessionKeys, int uid, String username, String password) {
-		return new LoginPacket(magic, clientVersion, highDetail, fileChecksums, blockLength, blockID, sessionKeys, uid,
-				username, password);
+	public static LoginPacket get(PacketClient client, int magic, int clientVersion, boolean highDetail,
+			int[] fileChecksums, int blockLength, int blockID, int[] sessionKeys, int uid, String username,
+			String password) {
+		return new LoginPacket(client, magic, clientVersion, highDetail, fileChecksums, blockLength, blockID,
+				sessionKeys, uid, username, password);
 	}
 
 	private final int magic;
@@ -19,8 +21,9 @@ public final class LoginPacket implements Packet {
 	private final int uid;
 	private final String username, password;
 
-	private LoginPacket(int magic, int clientVersion, boolean highDetail, int[] fileChecksums, int blockLength,
-			int blockID, int[] sessionKeys, int uid, String username, String password) {
+	private LoginPacket(PacketClient client, int magic, int clientVersion, boolean highDetail, int[] fileChecksums,
+			int blockLength, int blockID, int[] sessionKeys, int uid, String username, String password) {
+		super(client);
 		this.magic = magic;
 		this.clientVersion = clientVersion;
 		this.highDetail = highDetail;

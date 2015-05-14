@@ -10,6 +10,10 @@ public abstract class AbstractNetworkClient<M extends NetworkMessage> implements
 		this.uuid = uuid;
 	}
 
+	protected AbstractNetworkClient() {
+		this(UUID.randomUUID());
+	}
+
 	@Override
 	public final UUID getUUID() {
 		return uuid;

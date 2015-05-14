@@ -1,7 +1,7 @@
 package essence.packet;
 
-public interface PacketEncoder<T extends Packet> {
+public interface PacketEncoder<T extends IncomingPacket> {
 
-	T encode(PacketMessage message);
+	T encode(PacketClient client, PacketMessage message);
 
 }

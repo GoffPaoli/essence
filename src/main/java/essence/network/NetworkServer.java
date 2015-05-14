@@ -3,11 +3,15 @@ package essence.network;
 import java.util.Collection;
 import java.util.UUID;
 
-public interface NetworkServer<M extends NetworkMessage> {
+public interface NetworkServer<M extends NetworkMessage, C extends NetworkClient<M>> {
 
-	Collection<NetworkClient<M>> getClients();
+	Collection<C> getClients();
 
-	NetworkClient<M> getClient(UUID uuid);
+	C getClient(UUID uuid);
+
+	void addClient(C client);
+
+	void removeClient(C client);
 
 	void start(int port);
 

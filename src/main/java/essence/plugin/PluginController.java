@@ -4,12 +4,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import essence.inject.Inject;
 import essence.inject.Injector;
 
 public final class PluginController {
 
 	public static PluginController get(String directory, Injector injector) {
-		return new PluginController(directory, new PluginLoader(), injector);
+		return new PluginController(directory, injector.getInstance(PluginLoader.class), injector);
 	}
 
 	private final File directory;
@@ -17,7 +18,8 @@ public final class PluginController {
 
 	private final Injector injector;
 
-	private PluginController(String directory, PluginLoader loader, Injector injector) {
+	@Inject
+	private PluginController(@PluginDirectory String directory, PluginLoader loader, Injector injector) {
 		this(new File(directory), loader, injector);
 	}
 
