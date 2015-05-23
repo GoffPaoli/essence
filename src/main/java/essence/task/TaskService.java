@@ -1,5 +1,7 @@
 package essence.task;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
@@ -33,8 +35,9 @@ public final class TaskService implements Runnable {
 
 	@Override
 	public void run() {
-		while (!tasks.isEmpty()) {
-			Task task = tasks.poll();
+		List<Task> list = new ArrayList<>();
+		tasks.removeAll(list);
+		for (Task task : tasks) {
 			executor.submit(() -> {
 				if (!task.finish())
 					submit(task);

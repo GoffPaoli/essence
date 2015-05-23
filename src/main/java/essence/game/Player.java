@@ -7,13 +7,10 @@ public final class Player extends Mob {
 	private final UUID uuid;
 	private final String username;
 
-	private String displayName;
-
 	private Player(Position position, UUID uuid, String username) {
 		super(position);
 		this.uuid = uuid;
 		this.username = username;
-		this.displayName = username;
 	}
 
 	public UUID getUUID() {
@@ -24,12 +21,9 @@ public final class Player extends Mob {
 		return username;
 	}
 
-	public String getDisplayName() {
-		return displayName;
-	}
+	@Override
+	public void process() {
 
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
 	}
 
 }

@@ -6,4 +6,10 @@ public final class NPC extends Mob {
 		super(position);
 	}
 
+	@Override
+	public void process() {
+		// TODO Auto-generated method stub
+
+	}
+
 }
